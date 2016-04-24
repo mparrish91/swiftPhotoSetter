@@ -42,6 +42,18 @@ class TestViewController: UIViewController, UIImagePickerControllerDelegate {
 
         let destroyAction2 = UIAlertAction(title: "Choose from Library", style: .Default) { (action) in
             print(action)
+
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary
+                ){
+                print("Button capture")
+
+                var imagePicker = UIImagePickerController()
+//                imagePicker.delegate = self
+                imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+                imagePicker.allowsEditing = false
+
+                self.presentViewController(imagePicker, animated: true, completion: nil)
+            }
         }
         alertController.addAction(destroyAction2)
 
@@ -61,10 +73,24 @@ class TestViewController: UIViewController, UIImagePickerControllerDelegate {
         }
     }
 
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-//        imagePicker.dismissViewControllerAnimated(true, completion: nil)
-////        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-//    }
+    //getting image from camera pic
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        //        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+
+
+    }
+
+
+    //getting image from camera roll
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+
+        })
+
+//        imageView.image = image
+
+    }
 
     /*
     // MARK: - Navigation
